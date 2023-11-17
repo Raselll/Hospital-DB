@@ -8,18 +8,18 @@ import { Router } from "@angular/router";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-    public route: string;
+  public route: string;
 
-    public constructor(location: Location, router: Router) {
-        router.events.subscribe((_val: any) => {
-            if (location.path() !== "") {
-              this.route = location.path();
-            } else {
-              this.route = "";
-            }
-          });
-    }
+  public constructor(location: Location, router: Router) {
+    router.events.subscribe((_val: any) => {
+      if (location.path() !== "") {
+        this.route = location.path();
+      } else {
+        this.route = "";
+      }
+    });
+  }
 
-    public readonly title: string = "INF3710 TP4";
-    public ngOnInit(): void { }
+  public readonly title: string = "INF3710 TP4";
+  public ngOnInit(): void {}
 }
