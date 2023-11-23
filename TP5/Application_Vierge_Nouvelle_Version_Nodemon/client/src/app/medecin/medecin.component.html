@@ -1,0 +1,31 @@
+<div *ngFor="let medecin of medecins">
+  <p> {{ medecin.idMedecin }} - {{ medecin.prenom }} {{ medecin.nom }} - {{ medecin.specialite }} -  {{ medecin.anneesExperience }} - {{medecin.idService}} </p>
+</div>
+
+<!-- // Voir si le code en haut marche bien sinon garder la table en bas -->
+
+<div>
+  <h2>Liste des Médecins</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>idMedecin</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Spécialité</th>
+        <th>Années d'expérience</th>
+        <th>idService</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let medecin of medecins">
+        <td>{{ medecin.idMedecin }}</td>
+        <td>{{ medecin.prenom }}</td>
+        <td>{{ medecin.nom }}</td>
+        <td>{{ medecin.specialite }}</td>
+        <td>{{ medecin.anneesExperience }}</td>
+        <td>{{medecin.idService}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

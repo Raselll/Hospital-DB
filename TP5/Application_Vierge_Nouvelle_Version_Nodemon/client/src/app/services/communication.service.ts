@@ -1,13 +1,25 @@
 // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
-// import { HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
+import { Medecins } from "../member.interface";
 
-@Injectable()
+@Injectable({
+  providedIn: "root",
+})
 export class CommunicationService {
   // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
-  // private readonly BASE_URL: string = "http://localhost:3000/database";
-  // public constructor(private readonly http: HttpClient) {}
+  private readonly BASE_URL: string = "http://localhost:3000/database";
+
+  public constructor(private readonly http: HttpClient) {}
+
+  getMedecins(): Observable<Medecins[]> {
+    return this.http.get<Medecins[]>(`${this.BASE_URL}/medecins`);
+  }
+
+  supprimerMedecin(id: string): Observable<any> {
+    return this.http.delete(`${this.BASE_URL}/medecins/${id}`);
+  }
 
   private _listeners: any = new Subject<any>();
 

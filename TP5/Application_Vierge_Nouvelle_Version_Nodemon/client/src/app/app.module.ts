@@ -8,13 +8,20 @@ import { AppComponent } from "./app.component";
 import { CommunicationService } from "./services/communication.service";
 import { AppMaterialModule } from "./modules/material.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PagePresentationComponent } from "./page-presentation/page-presentation.component";
-import { Link1Component } from "./link1/link1.component";
-import { Link2Component } from './link2/link2.component';
-import { Link3Component } from './link3/link3.component';
+import { AjoutComponent } from "./ajout/ajout.component";
+import { SuppressionComponent } from "./suppression/suppression.component";
+import { ModificationComponent } from "./modification/modification.component";
+import { MedecinComponent } from "./medecin/medecin.component";
 
 @NgModule({
-  declarations: [AppComponent, PagePresentationComponent, Link1Component, Link2Component, Link3Component],
+  declarations: [
+    AppComponent,
+    MedecinComponent,
+    AjoutComponent,
+    SuppressionComponent,
+    ModificationComponent,
+    MedecinComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
