@@ -1,0 +1,66 @@
+/* Centrer le formulaire */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 0;
+  }
+  
+  form {
+    width: 300px; /* Largeur du formulaire */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Espacement entre les éléments du formulaire */
+  form label,
+  form input,
+  form select,
+  form button {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  /* Style des boutons dans le formulaire */
+  form button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  /* Style pour les messages d'erreur */
+  form span {
+    display: none;
+  }
+  form span.active {
+    display: block;
+  }
+
+  /* Style pour la table */
+table {
+    width: 100%;
+    border-collapse: separate; /* Utilisation de border-collapse: separate */
+    border-spacing: 8px; /* Espacement entre les colonnes */
+  }
+  
+  /* Style pour les en-têtes de colonnes */
+  th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Style pour les cellules des médecins avec alignement à droite */
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right; /* Alignement du texte à droite */
+  }
+  
+  

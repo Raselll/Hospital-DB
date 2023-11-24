@@ -1,4 +1,4 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { inject, injectable } from "inversify";
 import { DatabaseService } from "../services/database.service";
 import Types from "../types";
