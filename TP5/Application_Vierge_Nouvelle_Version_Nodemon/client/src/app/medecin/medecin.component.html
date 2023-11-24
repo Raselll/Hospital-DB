@@ -1,10 +1,10 @@
-<div *ngFor="let medecin of medecins">
+<!-- <div *ngFor="let medecin of medecins">
   <p> {{ medecin.idMedecin }} - {{ medecin.prenom }} {{ medecin.nom }} - {{ medecin.specialite }} -  {{ medecin.anneesExperience }} - {{medecin.idService}} </p>
-</div>
+</div> -->
 
 <!-- // Voir si le code en haut marche bien sinon garder la table en bas -->
 
-<div>
+<div id="medecin">
   <h2>Liste des Médecins</h2>
   <table>
     <thead>
@@ -19,12 +19,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let medecin of medecins">
-        <td>{{ medecin.idMedecin }}</td>
+        <td>{{ medecin.idmedecin }}</td>
         <td>{{ medecin.prenom }}</td>
         <td>{{ medecin.nom }}</td>
         <td>{{ medecin.specialite }}</td>
-        <td>{{ medecin.anneesExperience }}</td>
-        <td>{{medecin.idService}}</td>
+        <td>{{ medecin.anneesexperience }}</td>
+        <td>{{medecin.idservice}}</td>
       </tr>
     </tbody>
   </table>
