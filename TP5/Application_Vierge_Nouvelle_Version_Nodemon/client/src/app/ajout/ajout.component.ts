@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Medecins } from "../member.interface";
+import { CommunicationService } from "../services/communication.service";
 
 @Component({
   selector: "app-ajout",
@@ -7,6 +8,7 @@ import { Medecins } from "../member.interface";
   styleUrls: ["./ajout.component.css"],
 })
 export class AjoutComponent implements OnInit {
+  constructor(private communicationService: CommunicationService) {}
   medecin: Medecins = {
     idMedecin: '123',
     prenom: 'John',
@@ -84,5 +86,10 @@ export class AjoutComponent implements OnInit {
       idService: '',
     };
   }
-  ngOnInit(): void {} 
+  ngOnInit(): void {
+    // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
+    this.communicationService.getMedecins().subscribe((medecinsAjoutes) => {
+      this.medecinsAjoutes = medecinsAjoutes;
+    });
+  }
 }
