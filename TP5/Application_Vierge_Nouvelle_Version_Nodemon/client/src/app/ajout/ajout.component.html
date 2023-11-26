@@ -10,17 +10,14 @@
     <form (ngSubmit)="ajouterMedecin()">
       <label for="idMedecin">ID Medecin:</label>
       <input type="text" id="idMedecin" name="idMedecin" [(ngModel)]="medecin.idMedecin" (keypress)="validerNombre($event, 'idMedecin')" value="123">
-      <span *ngIf="idMedecinInvalide" style="color: red;">Caractère invalide</span>
       <br>
 
       <label for="prenom">Prénom:</label>
       <input type="text" id="prenom" name="prenom" [(ngModel)]="medecin.prenom" (keypress)="validerLettres($event, 'prenom')" value="John">
-      <span *ngIf="prenomInvalide" style="color: red;">Caractère invalide</span>
       <br>
 
       <label for="nom">Nom:</label>
       <input type="text" id="nom" name="nom" [(ngModel)]="medecin.nom" (keypress)="validerLettres($event, 'nom')" value="Doe">
-      <span *ngIf="nomInvalide" style="color: red;">Caractère invalide</span>
       <br>
 
       <label for="specialite">Spécialité:</label>
@@ -43,9 +40,18 @@
       <br>
 
       <label for="idService">ID Service:</label>
-      <input type="text" id="idService" name="idService" [(ngModel)]="medecin.idService" (keypress)="validerNombre($event, 'idService')" value="456">
-      <span *ngIf="idServiceInvalide" style="color: red;">Caractère invalide</span>
-      <br>
+      <select type="text" id="idService" name="idService" [(ngModel)]="medecin.idService">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
 
       <button type="submit" [disabled]="!formValide()">Ajouter</button>
     </form>
