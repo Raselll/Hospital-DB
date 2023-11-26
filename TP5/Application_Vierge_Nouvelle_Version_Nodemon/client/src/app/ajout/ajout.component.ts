@@ -7,7 +7,6 @@ import { Medecins } from "../member.interface";
   styleUrls: ["./ajout.component.css"],
 })
 export class AjoutComponent implements OnInit {
-  constructor() {}
   medecin: Medecins = {
     idMedecin: '0',
     prenom: 'Marie',
@@ -16,8 +15,10 @@ export class AjoutComponent implements OnInit {
     anneesExperience: '8',
     idService: '3',
   };
-
   medecinsAjoutes: Medecins[] = [];
+  
+  constructor() {}
+
   idMedecinInvalide: boolean = false;
   prenomInvalide: boolean = false;
   nomInvalide: boolean = false;
