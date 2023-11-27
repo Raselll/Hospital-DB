@@ -46,7 +46,7 @@ export class AjoutComponent implements OnInit {
   }
   
   validerLettres(event: KeyboardEvent, champ: string): void {
-    const pattern = /[a-zA-Z]/;
+    const pattern = /[a-zA-ZçéÇÉ]/;
     const inputChar = String.fromCharCode(event.charCode);
     const estValide = pattern.test(inputChar);
     let message = '';
@@ -66,7 +66,6 @@ export class AjoutComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    // Récupérer les médecins depuis le localStorage lors du chargement du composant
     const savedMedecins = localStorage.getItem('medecinsAjoutes');
     if (savedMedecins) {
       this.medecinsAjoutes = JSON.parse(savedMedecins);
@@ -95,26 +94,31 @@ export class AjoutComponent implements OnInit {
       anneesExperience: parseInt(this.medecin.anneesExperience),
       idService: parseInt(this.medecin.idService.split(' ')[0])
     };
+    const nouveauMedecinId = parseInt(this.medecin.idMedecin);
+    const medecinExiste = this.medecinsAjoutes.some(medecin => parseInt(medecin.idMedecin) === nouveauMedecinId);
+
+
+    if (!medecinExiste) {
+      const correspondance = medecinsValides.some(medecinValide =>
+        JSON.stringify(medecinValide) === JSON.stringify(nouveauMedecin)
+      );
   
-    const correspondance = medecinsValides.some(medecinValide =>
-      JSON.stringify(medecinValide) === JSON.stringify(nouveauMedecin)
-    );
-  
-    if (correspondance) {
-      this.medecinsAjoutes.push({ ...this.medecin });
-      this.medecin = {
-        idMedecin: '',
-        prenom: '',
-        nom: '',
-        specialite: '',
-        anneesExperience: '',
-        idService: ''
-      };
+      if (correspondance) {
+        this.medecinsAjoutes.push({ ...this.medecin });
+        this.medecin = {
+          idMedecin: '',
+          prenom: '',
+          nom: '',
+          specialite: '',
+          anneesExperience: '',
+          idService: ''
+        };
+      } else {
+        alert('Les données du médecin à ajouter ne correspondent pas avec un médecin dans la base de données.');
+      }
+      localStorage.setItem('medecinsAjoutes', JSON.stringify(this.medecinsAjoutes));
     } else {
-      alert('Les données du médecin à ajouter ne correspondent pas avec un médecin dans la base de donnés.');
+      alert('Ce médecin existe déjà dans la liste.');
     }
-    localStorage.setItem('medecinsAjoutes', JSON.stringify(this.medecinsAjoutes));
-  }
-  
-  
+  }  
 }
