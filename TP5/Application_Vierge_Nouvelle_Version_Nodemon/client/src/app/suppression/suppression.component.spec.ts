@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SuppressionComponent } from './suppression.component';
+import { SuppressionComponent } from "./suppression.component";
 
-describe('SuppressionComponent', () => {
+describe("SuppressionComponent", () => {
   let component: SuppressionComponent;
   let fixture: ComponentFixture<SuppressionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SuppressionComponent ]
-    })
-    .compileComponents();
+      declarations: [SuppressionComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('SuppressionComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
