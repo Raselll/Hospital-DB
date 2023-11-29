@@ -1,1 +1,88 @@
-<h2> Works </h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un médecin</title>
+</head>
+<body>
+<div>
+  <fieldset>
+    <legend>Ajouter un nouveau médecin</legend>
+    <form (ngSubmit)="ajouterMedecin()">
+      <label for="idMedecin">ID Medecin:</label>
+      <input type="text" id="idMedecin" name="idMedecin" [(ngModel)]="medecin.idMedecin" (keypress)="validerNombre($event, 'idMedecin')" value="123">
+      <br>
+
+      <label for="prenom">Prénom:</label>
+      <input type="text" id="prenom" name="prenom" [(ngModel)]="medecin.prenom" (keypress)="validerLettres($event, 'prenom')" value="John">
+      <br>
+
+      <label for="nom">Nom:</label>
+      <input type="text" id="nom" name="nom" [(ngModel)]="medecin.nom" (keypress)="validerLettres($event, 'nom')" value="Doe">
+      <br>
+
+      <label for="specialite">Spécialité:</label>
+      <select id="specialite" name="specialite" [(ngModel)]="medecin.specialite">
+          <option value="Dermatologie">Dermatologie</option>
+          <option value="Neurologie">Neurologie</option>
+          <option value="Ophtalmologie">Ophtalmologie</option>
+          <option value="Orthopédie">Orthopédie</option>
+          <option value="Psychiatrie">Psychiatrie</option>
+          <option value="Cardiologie">Cardiologie</option>
+          <option value="Pédiatrie">Pédiatrie</option>
+          <option value="Chirurgie">Chirurgie</option>
+          <option value="Gynécologie">Gynécologie</option>
+          <option value="Radiologie">Radiologie</option>
+      </select>
+      <br>
+
+      <label for="anneesExperience">Années d'expérience:</label>
+      <input type="number" id="anneesExperience" name="anneesExperience" [(ngModel)]="medecin.anneesExperience" min="0" max="99" value="0">
+      <br>
+
+      <label for="idService">ID Service:</label>
+      <select type="text" id="idService" name="idService" [(ngModel)]="medecin.idService">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+      </select>
+
+      <button type="submit" [disabled]="!formValide()">Ajouter</button>
+    </form>
+  </fieldset>
+</div>
+<hr>
+<div>
+<h2>Liste des médecins ajoutés</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Spécialité</th>
+      <th>Expérience</th>
+      <th>ID Service</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of medecinsAjoutes">
+      <td>{{ m.idMedecin }}</td>
+      <td>{{ m.prenom }}</td>
+      <td>{{ m.nom }}</td>
+      <td>{{ m.specialite }}</td>
+      <td>{{ m.anneesExperience }}</td>
+      <td>{{ m.idService }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</body>
+</html>

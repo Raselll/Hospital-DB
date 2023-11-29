@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-// import { ActivatedRoute, Router } from "@angular/router";
-// import { CommunicationService } from "../services/communication.service";
+import { Medecins } from "../member.interface";
 
 @Component({
   selector: "app-suppression",
@@ -9,28 +7,19 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./suppression.component.css"],
 })
 export class SuppressionComponent implements OnInit {
-  medecinId: string;
+  medecinsAjoutes: Medecins[] = [];
 
-  constructor(
-    private route: ActivatedRoute // private router: Router, // private communicationService: CommunicationService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.medecinId = params["id"];
-    });
+    const savedMedecins = localStorage.getItem('medecinsAjoutes');
+    if (savedMedecins) {
+      this.medecinsAjoutes = JSON.parse(savedMedecins);
+    }
   }
 
-  // supprimerMedecin(): void {
-  //   if (this.medecinId) {
-  //     this.communicationService.supprimerMedecin(this.medecinId).subscribe(
-  //       () => {
-  //         this.router.navigate(["/medecin"]);
-  //       },
-  //       (error) => {
-  //         console.error("Erreur lors de la suppression du médecin", error);
-  //       }
-  //     );
-  //   }
-  // }
+  supprimerMedecin(index: number): void {
+    this.medecinsAjoutes.splice(index, 1);
+    localStorage.setItem('medecinsAjoutes', JSON.stringify(this.medecinsAjoutes));
+  }
 }
