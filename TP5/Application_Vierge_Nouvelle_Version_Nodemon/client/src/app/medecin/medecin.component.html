@@ -1,25 +1,43 @@
-<div id="medecin">
-  <h2>Liste des Médecins</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>idMedecin</th>
-        <th>Prénom</th>
-        <th>Nom</th>
-        <th>Spécialité</th>
-        <th>Années d'expérience</th>
-        <th>idService</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let medecin of medecins">
-        <td>{{ medecin.idmedecin }}</td>
-        <td>{{ medecin.prenom }}</td>
-        <td>{{ medecin.nom }}</td>
-        <td>{{ medecin.specialite }}</td>
-        <td>{{ medecin.anneesexperience }}</td>
-        <td>{{medecin.idservice}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container">
+  <div class="table-container">
+    <h2>Base de données : Médecins</h2>
+    <table class="medecin-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Spécialité</th>
+          <th>Expérience</th>
+          <th>ID Service</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medecin of medecinsAjoutes; let i = index">
+          <td>{{ medecin.idMedecin }}</td>
+          <td>{{ medecin.prenom }}</td>
+          <td>{{ medecin.nom }}</td>
+          <td>{{ medecin.specialite }}</td>
+          <td>{{ medecin.anneesExperience }}</td>
+          <td>{{ medecin.idService }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="instructions">
+    <h2>Instructions</h2>
+    <p>
+      Pour <strong><em>AJOUTER</em></strong> un médecin, veuillez vous rediriger vers l'onglet <strong>AJOUT</strong>.
+    </p>
+    <p>
+      Pour <strong><em>SUPPRIMER</em></strong> un médecin, veuillez vous rediriger vers l'onglet <strong>SUPPRESSION</strong>.
+    </p>
+    <p>
+      Pour <strong><em>MODIFIER</em></strong> un médecin, veuillez vous rediriger vers l'onglet <strong>MODIFICATION</strong>.
+    </p>
+    <p>
+      <strong><em>*** La base de données sera modifiée en conséquence de vos actions ***</em></strong>
+    </p>
+  </div>
 </div>
