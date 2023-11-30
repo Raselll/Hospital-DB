@@ -20,7 +20,6 @@ import { MedecinComponent } from "./medecin/medecin.component";
     AjoutComponent,
     SuppressionComponent,
     ModificationComponent,
-    MedecinComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +29,7 @@ import { MedecinComponent } from "./medecin/medecin.component";
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    AppMaterialModule,
+    AppMaterialModule
   ],
   providers: [CommunicationService],
   entryComponents: [],

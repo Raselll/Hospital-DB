@@ -12,7 +12,7 @@ export class SuppressionComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    const savedMedecins = localStorage.getItem('medecinsAjoutes');
+    const savedMedecins = localStorage.getItem("medecinsAjoutes");
     if (savedMedecins) {
       this.medecinsAjoutes = JSON.parse(savedMedecins);
     }
@@ -20,6 +20,9 @@ export class SuppressionComponent implements OnInit {
 
   supprimerMedecin(index: number): void {
     this.medecinsAjoutes.splice(index, 1);
-    localStorage.setItem('medecinsAjoutes', JSON.stringify(this.medecinsAjoutes));
+    localStorage.setItem(
+      "medecinsAjoutes",
+      JSON.stringify(this.medecinsAjoutes)
+    );
   }
 }

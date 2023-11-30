@@ -22,6 +22,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseController = void 0;
+// import { Router, Request, Response } from "express";
 const express_1 = require("express");
 const inversify_1 = require("inversify");
 const database_service_1 = require("../services/database.service");
@@ -54,7 +55,9 @@ let DatabaseController = class DatabaseController {
     configureSuppresion() {
         this.router.delete("/medecins/:id", (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                this.databaseService.supprimerMedecin(req.params.id).then((result) => {
+                this.databaseService
+                    .supprimerMedecin(req.params.id)
+                    .then((result) => {
                     res.send(result);
                 });
             }

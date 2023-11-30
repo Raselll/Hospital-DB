@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+// import { Router, Request, Response } from "express";
+>>>>>>> origin/main
 import { Router } from "express";
 import { inject, injectable } from "inversify";
 import { DatabaseService } from "../services/database.service";
@@ -36,9 +40,11 @@ export class DatabaseController {
   private configureSuppresion(): void {
     this.router.delete("/medecins/:id", async (req: any, res: any) => {
       try {
-        this.databaseService.supprimerMedecin(req.params.id).then((result:any) => {
-          res.send(result);
-        });
+        this.databaseService
+          .supprimerMedecin(req.params.id)
+          .then((result: any) => {
+            res.send(result);
+          });
       } catch (error) {
         console.error("Erreur lors de la suppression du médecin", error);
         throw error;
