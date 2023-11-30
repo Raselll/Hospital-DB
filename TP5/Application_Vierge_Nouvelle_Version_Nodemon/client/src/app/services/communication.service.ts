@@ -21,6 +21,14 @@ export class CommunicationService {
     return this.http.delete(`${this.BASE_URL}/medecins/${id}`);
   }
 
+  getMedecinById(idMedecin: string): Observable<Medecins> {
+    return this.http.get<Medecins>(`${this.BASE_URL}/medecins/${idMedecin}`);
+  }
+
+  modifierMedecin(medecin: Medecins): Observable<Medecins> {
+    return this.http.put<Medecins>(`${this.BASE_URL}/medecins/${medecin.idMedecin}`, medecin);
+  }
+
   private _listeners: any = new Subject<any>();
 
   listen(): Observable<any> {

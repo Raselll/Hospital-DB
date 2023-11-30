@@ -1,1 +1,33 @@
-<p>modification works!</p>
+<div id="medecin">
+    <h2>Modification des Médecins</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Spécialité</th>
+          <th>Années d'expérience</th>
+          <th>ID Service</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medecin of medecins">
+          <td>{{ medecin.idmedecin }}</td>
+          <td><input type="text" [(ngModel)]="medecin.prenom" [readonly]="!isEditing[medecin.idMedecin]"></td>
+          <td><input type="text" [(ngModel)]="medecin.nom" [readonly]="!isEditing[medecin.idMedecin]"></td>
+          <td><input type="text" [(ngModel)]="medecin.specialite" [readonly]="!isEditing[medecin.idMedecin]"></td>
+          <td><input type="text" [(ngModel)]="medecin.anneesexperience" [readonly]="!isEditing[medecin.idMedecin]"></td>
+          <td><input type="text" [(ngModel)]="medecin.idservice" [readonly]="!isEditing[medecin.idMedecin]"></td>
+          <td>
+            <button (click)="toggleEdit(medecin.idMedecin)">    
+              {{ isEditing[medecin.idMedecin] ? 'Annuler' : 'Modifier' }}
+            </button>
+            <button *ngIf="isEditing[medecin.idMedecin]" (click)="saveChanges(medecin)">Sauvegarder</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
