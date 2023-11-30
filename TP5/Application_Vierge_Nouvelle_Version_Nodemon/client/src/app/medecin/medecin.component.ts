@@ -16,12 +16,10 @@ export class MedecinComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Récupération des médecins à partir du service de communication
     this.communicationService.getMedecins().subscribe((medecins) => {
       this.medecins = medecins;
     });
 
-    // Récupération des médecins ajoutés à partir du stockage local
     const savedMedecins = localStorage.getItem("medecinsAjoutes");
     if (savedMedecins) {
       this.medecinsAjoutes = JSON.parse(savedMedecins);

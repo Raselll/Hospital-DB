@@ -35,7 +35,6 @@ let DatabaseService = class DatabaseService {
         return __awaiter(this, void 0, void 0, function* () {
             const client = yield this.pool.connect();
             try {
-                // const result = await client.query("SELECT * FROM hospital_bd.Medecins");
                 const result = yield client.query("SELECT * FROM Medecins");
                 return result.rows;
             }
@@ -56,6 +55,22 @@ let DatabaseService = class DatabaseService {
             }
             catch (err) {
                 console.error("Erreur lors de la suppression du médecin dans la base de données", err);
+                throw err;
+            }
+            finally {
+                client.release();
+            }
+        });
+    }
+    modifierMedecin(medecin) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idMedecin, prenom, nom, specialite, anneesExperience, idService } = medecin;
+            const client = yield this.pool.connect();
+            try {
+                yield client.query("UPDATE Medecins SET prenom = $1, nom = $2, specialite = $3, anneesExperience = $4, idService = $5 WHERE idMedecin = $6", [prenom, nom, specialite, anneesExperience, idService, idMedecin]);
+            }
+            catch (err) {
+                console.error("Erreur lors de la modification du médecin dans la base de données", err);
                 throw err;
             }
             finally {
