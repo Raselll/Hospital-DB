@@ -9,13 +9,20 @@ import { Medecins } from "../member.interface";
 })
 export class MedecinComponent implements OnInit {
   medecins: Medecins[] = [];
+  medecinsAjoutes: Medecins[] = [];
 
-  constructor(private communicationService: CommunicationService) {}
+  constructor(
+    private communicationService: CommunicationService
+  ) {}
 
   ngOnInit(): void {
-    // À DÉCOMMENTER ET À UTILISER LORSQUE VOTRE COMMUNICATION EST IMPLÉMENTÉE
     this.communicationService.getMedecins().subscribe((medecins) => {
       this.medecins = medecins;
     });
+
+    const savedMedecins = localStorage.getItem("medecinsAjoutes");
+    if (savedMedecins) {
+      this.medecinsAjoutes = JSON.parse(savedMedecins);
+    }
   }
 }

@@ -22,7 +22,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DatabaseController = void 0;
-// import { Router, Request, Response } from "express";
 const express_1 = require("express");
 const inversify_1 = require("inversify");
 const database_service_1 = require("../services/database.service");
@@ -35,6 +34,7 @@ let DatabaseController = class DatabaseController {
         this._router = (0, express_1.Router)();
         this.configureMedecins();
         this.configureSuppresion();
+        this.configureModification();
     }
     get router() {
         return this._router;
@@ -63,6 +63,20 @@ let DatabaseController = class DatabaseController {
             }
             catch (error) {
                 console.error("Erreur lors de la suppression du médecin", error);
+                throw error;
+            }
+        }));
+    }
+    configureModification() {
+        this.router.put("/medecins/:id", (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = req.params.id;
+                const updatedMedecinData = req.body;
+                yield this.databaseService.modifierMedecin(Object.assign({ idMedecin: id }, updatedMedecinData));
+                res.send("Medecin modifié avec succès");
+            }
+            catch (error) {
+                console.error("Erreur lors de la modification du médecin", error);
                 throw error;
             }
         }));

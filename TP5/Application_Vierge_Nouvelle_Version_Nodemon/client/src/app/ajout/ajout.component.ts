@@ -55,7 +55,7 @@ export class AjoutComponent implements OnInit {
   }
 
   validerLettres(event: KeyboardEvent, champ: string): void {
-    const pattern = /[a-zA-ZçéÇÉ]/;
+    const pattern = /[a-zA-ZàâæäéèêëîïôœöùûüÿçÀÂÆÄÉÈÊËÎÏÔŒÖÙÛÜŸÇ]/;
     const inputChar = String.fromCharCode(event.charCode);
     const estValide = pattern.test(inputChar);
     let message = "";
@@ -82,89 +82,6 @@ export class AjoutComponent implements OnInit {
   }
 
   ajouterMedecin(): void {
-    const medecinsValides = [
-      {
-        idMedecin: 0,
-        prenom: "Marie",
-        nom: "Rousseau",
-        specialite: "Dermatologie",
-        anneesExperience: 8,
-        idService: 3,
-      },
-      {
-        idMedecin: 1,
-        prenom: "Philippe",
-        nom: "Lemelin",
-        specialite: "Neurologie",
-        anneesExperience: 6,
-        idService: 4,
-      },
-      {
-        idMedecin: 2,
-        prenom: "Valérie",
-        nom: "Bélanger",
-        specialite: "Ophtalmologie",
-        anneesExperience: 10,
-        idService: 1,
-      },
-      {
-        idMedecin: 3,
-        prenom: "Alex",
-        nom: "Michaud",
-        specialite: "Orthopédie",
-        anneesExperience: 12,
-        idService: 2,
-      },
-      {
-        idMedecin: 4,
-        prenom: "Nathalie",
-        nom: "Gagné",
-        specialite: "Psychiatrie",
-        anneesExperience: 9,
-        idService: 3,
-      },
-      {
-        idMedecin: 5,
-        prenom: "Simon",
-        nom: "Tremblay",
-        specialite: "Cardiologie",
-        anneesExperience: 15,
-        idService: 4,
-      },
-      {
-        idMedecin: 6,
-        prenom: "Audrey",
-        nom: "Beaulieu",
-        specialite: "Pédiatrie",
-        anneesExperience: 7,
-        idService: 1,
-      },
-      {
-        idMedecin: 7,
-        prenom: "David",
-        nom: "Fournier",
-        specialite: "Chirurgie",
-        anneesExperience: 11,
-        idService: 2,
-      },
-      {
-        idMedecin: 8,
-        prenom: "Isabelle",
-        nom: "Lapointe",
-        specialite: "Gynécologie",
-        anneesExperience: 14,
-        idService: 3,
-      },
-      {
-        idMedecin: 9,
-        prenom: "François",
-        nom: "Martel",
-        specialite: "Radiologie",
-        anneesExperience: 5,
-        idService: 4,
-      },
-    ];
-
     const nouveauMedecin: Medecins = {
       idMedecin: this.medecin.idMedecin,
       prenom: this.medecin.prenom,
@@ -173,36 +90,22 @@ export class AjoutComponent implements OnInit {
       anneesExperience: this.medecin.anneesExperience,
       idService: this.medecin.idService,
     };
-
+  
     const nouveauMedecinId: string = nouveauMedecin.idMedecin;
     const medecinExiste: boolean = this.medecinsAjoutes.some(
       (medecin) => medecin.idMedecin === nouveauMedecinId
     );
-
-    if (!medecinExiste) {
-      const correspondance: boolean = medecinsValides.some((medecinValide) => {
-        const match = Object.keys(medecinValide).every((key) => {
-          const val1 = medecinValide[key as keyof Medecins]
-            .toString()
-            .toLowerCase();
-          const val2 = nouveauMedecin[key as keyof Medecins]
-            .toString()
-            .toLowerCase();
-          console.log(`${key}: ${val1} === ${val2}`);
-
-          if (key === "prenom") {
-            console.log(`Specific match for prenom: ${val1 === val2}`);
-            console.log(`Prenom val1: ${val1}`);
-            console.log(`Prenom val2: ${val2}`);
-          }
-
-          return val1 === val2;
-        });
-        console.log(`Match: ${match}`);
-        return match;
-      });
-
-      if (correspondance) {
+  
+    const experienceValide: boolean =
+      parseInt(this.medecin.anneesExperience) >= 0 &&
+      parseInt(this.medecin.anneesExperience) <= 99;
+  
+    if (!medecinExiste && experienceValide) {
+      const idExisteDeja: boolean = this.medecinsAjoutes.some(
+        (medecin) => medecin.idMedecin === nouveauMedecinId
+      );
+  
+      if (!idExisteDeja) {
         this.medecinsAjoutes.push({ ...this.medecin });
         this.medecin = {
           idMedecin: "",
@@ -212,17 +115,18 @@ export class AjoutComponent implements OnInit {
           anneesExperience: "",
           idService: "",
         };
-      } else {
-        alert(
-          "Les données du médecin à ajouter ne correspondent pas avec un médecin dans la base de données."
+        localStorage.setItem(
+          "medecinsAjoutes",
+          JSON.stringify(this.medecinsAjoutes)
         );
+      } else {
+        alert("Ce médecin existe déjà dans la liste.");
       }
-      localStorage.setItem(
-        "medecinsAjoutes",
-        JSON.stringify(this.medecinsAjoutes)
-      );
+    } else if (!experienceValide) {
+      alert("L'année d'expérience doit être comprise entre 0 et 99.");
     } else {
-      alert("Ce médecin existe déjà dans la liste.");
+      alert("Un médecin avec cet identifiant existe déjà dans la liste.");
     }
   }
-}
+  }
+}  

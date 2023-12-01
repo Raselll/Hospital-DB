@@ -1,4 +1,3 @@
-// import { Router, Request, Response } from "express";
 import { Router } from "express";
 import { inject, injectable } from "inversify";
 import { DatabaseService } from "../services/database.service";
@@ -15,6 +14,7 @@ export class DatabaseController {
   ) {
     this.configureMedecins();
     this.configureSuppresion();
+    this.configureModification();
   }
 
   public get router(): Router {
@@ -49,14 +49,22 @@ export class DatabaseController {
     });
   }
 
-  // router.get("/medecins", async (req: Request, res: Response) => {
-  //   try {
-  //     const medecins = await this.databaseService.getMedecins();
-  //     res.json(medecins);
-  //   } catch (error) {
-  //     res.status(500).json({ error: "Erreur lors de la récupération des médecins" });
-  //   }
-  // });
+  private configureModification(): void {
+    this.router.put("/medecins/:id", async (req: any, res: any) => {
+      try {
+        const id = req.params.id;
+        const updatedMedecinData = req.body;
 
-  // return router;
+        await this.databaseService.modifierMedecin({
+          idMedecin: id,
+          ...updatedMedecinData,
+        });
+
+        res.send("Medecin modifié avec succès");
+      } catch (error) {
+        console.error("Erreur lors de la modification du médecin", error);
+        throw error;
+      }
+    });
+  }
 }
