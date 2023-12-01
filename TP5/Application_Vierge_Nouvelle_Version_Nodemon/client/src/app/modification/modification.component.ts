@@ -1,26 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { CommunicationService } from '../services/communication.service';
-import { Medecins } from '../member.interface';
+import { Component, OnInit } from "@angular/core";
+import { CommunicationService } from "../services/communication.service";
+import { Medecins } from "../member.interface";
 
 @Component({
-  selector: 'app-modification',
-  templateUrl: './modification.component.html',
-  styleUrls: ['./modification.component.css']
+  selector: "app-modification",
+  templateUrl: "./modification.component.html",
+  styleUrls: ["./modification.component.css"],
 })
 export class ModificationComponent implements OnInit {
   medecins: Medecins[] = [];
-  isEditing: {[key: string]: boolean} = {};
+  isEditing: { [key: string]: boolean } = {};
 
-  constructor(private communicationService: CommunicationService) { }
+  constructor(private communicationService: CommunicationService) {}
 
   ngOnInit(): void {
-    this.communicationService.getMedecins().subscribe((medecins: Medecins[]) => {
-      this.medecins = medecins;
-      // Initialiser le statut d'édition pour chaque médecin à faux
-      this.medecins.forEach(medecin => {
-        this.isEditing[medecin.idMedecin] = false;
+    this.communicationService
+      .getMedecins()
+      .subscribe((medecins: Medecins[]) => {
+        this.medecins = medecins;
+        this.medecins.forEach((medecin) => {
+          this.isEditing[medecin.idMedecin] = false;
+        });
       });
-    });
   }
 
   toggleEdit(id: string): void {
@@ -29,12 +30,15 @@ export class ModificationComponent implements OnInit {
 
   saveChanges(medecin: Medecins): void {
     if (this.isEditing[medecin.idMedecin]) {
-      this.communicationService.modifierMedecin(medecin).subscribe(() => {
-        console.log('Médecin modifié avec succès');
-        this.toggleEdit(medecin.idMedecin); // Désactiver le mode d'édition
-      }, error => {
-        console.error('Erreur lors de la modification du médecin', error);
-      });
+      this.communicationService.modifierMedecin(medecin).subscribe(
+        () => {
+          console.log("Médecin modifié avec succès");
+          this.toggleEdit(medecin.idMedecin);
+        },
+        (error) => {
+          console.error("Erreur lors de la modification du médecin", error);
+        }
+      );
     }
   }
 }
