@@ -23,13 +23,17 @@
           <input type="text" [(ngModel)]="medecin.nom" [disabled]="!isEditing[medecin.idMedecin]">
         </td>
         <td>
-          <input type="text" [(ngModel)]="medecin.specialite" [disabled]="!isEditing[medecin.idMedecin]">
+          <select [(ngModel)]="medecin.specialite" [disabled]="!isEditing[medecin.idMedecin]">
+            <option *ngFor="let spe of specialites" [value]="spe">{{ spe }}</option>
+          </select>
         </td>
         <td>
-          <input type="number" [(ngModel)]="medecin.anneesExperience" [disabled]="!isEditing[medecin.idMedecin]">
+          <input type="number" [(ngModel)]="medecin.anneesExperience" [disabled]="!isEditing[medecin.idMedecin]" min="0" max="99">
         </td>
         <td>
-          <input type="text" [(ngModel)]="medecin.idService" [disabled]="!isEditing[medecin.idMedecin]">
+          <select [(ngModel)]="medecin.idService"  [disabled]="!isEditing[medecin.idMedecin]">              
+            <option *ngFor="let numero of numerosService" [value]="numero">{{ numero }}</option>
+          </select>
         </td>
         <td>
           <button (click)="toggleEdit(medecin.idMedecin)">
