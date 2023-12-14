@@ -1,1 +1,3 @@
-Hospital_DB
+# Hospital_DB
+
+I've collaborated with a dynamic team of three to develop a Hospital Database Website, aimed at redefining how medical professionals are managed. Our combined efforts resulted in a comprehensive solution that seamlessly integrates front-end aesthetics with powerful back-end functionality to make an user-friendly interface. The goal was to be able to ADD, DELETE, and MODIFY doctor records within a dynamic database with essential fields like {idMedecin}, {prenom}, {nom}, {specialite}, {anneesExperience}, and {idService}. Each actions performed on the website dynamically update and synchronize with the PostgreSQL database. HTML, CSS, and JavaScript, to implementing a responsive back-end powered by Node.js and a PostgreSQL were the tools used.
